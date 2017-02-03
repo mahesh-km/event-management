@@ -15,7 +15,7 @@ if(!empty($_POST['user']))   //checking the 'user' name which is from Sign in ht
 	if(!empty($row['UserName']) AND !empty($row['pass']))
 	{
 		$_SESSION['UserName'] = $row['pass'];
-                header("location:registration.html");
+                header("location:option_page.html");
                 
 	}
 	else
