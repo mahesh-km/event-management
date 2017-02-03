@@ -25,7 +25,7 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO Register (delar_name, contact_name, salesman_name, email, address, delar_dist, pass) VALUES ('$_POST[delar_name]', '$_POST[contact_name]', '$_POST[salesman_name]', '$_POST[delar_email]', '$_POST[delar_address]', '$_POST[delar_district]', '$_POST[num_of_tickets]')";
+$sql = "INSERT INTO Register (delar_name, contact_name, salesman_name, email, address, phone_mob, land_phone, delar_dist, pass) VALUES ('$_POST[delar_name]', '$_POST[contact_name]', '$_POST[salesman_name]', '$_POST[delar_email]', '$_POST[delar_address]', '$_POST[delar_mobile]', '$_POST[delar_land]','$_POST[delar_district]', '$_POST[num_of_tickets]')";
 
 if ($conn->query($sql) === TRUE) 
 {
@@ -34,7 +34,7 @@ if ($conn->query($sql) === TRUE)
 	//echo "alert('New record created successfully. Last inserted ID is: $last_id');";
 	//echo "</script>";
 
-	$query_select = "SELECT `delar_name`, `email`, `delar_dist`, `pass` FROM `Register` WHERE `delar_id` = '$last_id'";
+	$query_select = "SELECT `delar_name`, `email`, `phone_mob`, `land_phone`, `delar_dist`, `pass` FROM `Register` WHERE `delar_id` = '$last_id'";
 
 	$result = mysqli_query($conn, $query_select);
 
@@ -47,6 +47,7 @@ if ($conn->query($sql) === TRUE)
 			echo "<li>Delar ID  : $last_id </li>";
 			echo "<li>Delar Name: {$row['delar_name']} </li>";
 			echo "<li>Email     : {$row['email']}</li>";
+			echo "<li>Mobile    : {$row['phone_mob']}</li>";
 			echo "<li>District  : {$row['delar_dist']}</li>";
 			echo "<li>No. Tickets issued: {$row['pass']}</li>";
 			echo "<a href='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=$last_id' download='QR.png'>";
