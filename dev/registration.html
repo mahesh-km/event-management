@@ -17,35 +17,35 @@
         <h1>Issue Ticket:</h1>
     </div>
     <div>
-        <label for="name">Delar Name :</label>
-        <input type="text" id="name" name="delar_name" />
+        <label for="name">Delar Name</label>
+        <input type="text" id="name" name="delar_name" required/>
     </div>
     <div>
-        <label for="name">Contact Name :</label>
-        <input type="text" id="name" name="contact_name" />
+        <label for="name">Contact Name</label>
+        <input type="text" id="name" name="contact_name" required/>
     </div>
     <div>
-        <label for="name">Sales Man :</label>
-        <input type="text" id="name" name="salesman_name" />
+        <label for="name">Sales Man</label>
+        <input type="text" id="name" name="salesman_name" required/>
     </div>
     <div>
-        <label for="Email">E-mail :</label>
-        <input type="email" id="mail" name="delar_email" />
+        <label for="Email">E-mail</label>
+        <input type="email" id="mail" name="delar_email" required/>
     </div>
     <div>
-        <label for="address">Address :</label>
+        <label for="address">Address</label>
         <textarea id="address" name="delar_address"></textarea>
     </div>
     <div>
-        <label for="phone_mob">Phone (Mob.) :</label>
-        <input type="tel" id="phone_mob" name="delar_mobile">
+        <label for="phone_mob">Mobile</label>
+        <input type="tel" id="phone_mob" name="delar_mobile" required pattern="^[0-9\-\+\s\(\)]*$">
     </div>
     <div>
-        <label for="phone_land">Phone Office :</label>
-        <input type="tel" id="phone_land" name="delar_land">
+        <label for="phone_land">Phone Office</label>
+        <input type="tel" id="phone_land" name="delar_land" pattern="^[0-9\-\+\s\(\)]*$">
     </div>
     <div>
-        <label for="district">District :</label>
+        <label for="district">District</label>
         <select type="text" id="district" name="delar_district">
   		<option>Select a district...</option>
 	 	<option value="Alappuzha">Alappuzha</option>
