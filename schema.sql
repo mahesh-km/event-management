@@ -16,3 +16,13 @@ CREATE TABLE `Register` (
   UNIQUE KEY `email` (`email`)
 );
 
+# CheckIn
+CREATE TABLE `CheckIn` (
+  `checkin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `checkin_date` date,
+  `checkin_time` time,
+  `checkin_tkt` int(4),
+  `delar_id` int(11) NOT NULL,
+  `FOREIGN KEY fk_delar_id(delar_id),
+  `PRIM
+   	
