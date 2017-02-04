@@ -18,11 +18,12 @@ CREATE TABLE `Register` (
 
 # CheckIn
 CREATE TABLE `CheckIn` (
-  `checkin_id` int(11) NOT NULL AUTO_INCREMENT,
+  `checkin_id` int(11) NOT NULL AUTO_INCREMENT primary key,
   `checkin_date` date,
   `checkin_time` time,
   `checkin_tkt` int(4),
   `delar_id` int(11) NOT NULL,
-  `FOREIGN KEY fk_delar_id(delar_id),
-  `PRIM
+  KEY `fk_delar_id` (`delar_id`),
+  CONSTRAINT `fk_delar_id` FOREIGN KEY (`delar_id`) REFERENCES `Register` (`delar_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
    	
