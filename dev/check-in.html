@@ -8,23 +8,27 @@
   <li><a href="registration.html">Issue ticket</a></li>
   <li><a href="user_search.html">Search</a></li>
   <li><a href="check-in.html">Check-in</a></li>
-  <li><a href="reg_modify.html">Edit</a></li>
+  <li><a href="report.php">Report</a></li>
   <li class="right"><a href="index.html">Logout</a></li>
 </ul>
 
-<form method="post" action="user_search.php">
+<form method="post" action="check-in.php">
     <div style="padding-top:1px; color: #5a5756; font: 1em sans-serif;">
-        <h1>Check-in</h1>
+        <h1>Check-in:</h1>
     </div>
     <div>
-        <h3>please enter user ID here</h3>
+        <h3>please enter Delar ID here:</h3>
     </div>
     <div>
-        <label for="delar_id">Delar ID</label>
+        <label for="delar_id">Delar ID :</label>
         <input type="text" id="delar_id" name="delar_id" />
     </div>
+    <div>
+        <label for="checkin_tkts">No. of people check-in :</label>
+        <input type="number" id="checkin_tkts" name="checkin_tkts" style="height:30px;"/>
+    </div>
     <div class="button">
-        <input id="button" type="submit" name="submit" value="Search">
+        <input id="button" type="submit" name="submit" value="Check-In">
     </div>
 </form>
 

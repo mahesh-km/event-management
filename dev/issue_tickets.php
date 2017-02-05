@@ -25,11 +25,15 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO Register (delar_name, contact_name, salesman_name, email, address, phone_mob, land_phone, delar_dist, pass) VALUES ('$_POST[delar_name]', '$_POST[contact_name]', '$_POST[salesman_name]', '$_POST[delar_email]', '$_POST[delar_address]', '$_POST[delar_mobile]', '$_POST[delar_land]','$_POST[delar_district]', '$_POST[num_of_tickets]')";
+$reg_delar_id = uniqid();
+
+$sql = "INSERT INTO Register (delar_id, delar_name, contact_name, salesman_name, email, address, phone_mob, land_phone, delar_dist, pass) VALUES ('$reg_delar_id', '$_POST[delar_name]', '$_POST[contact_name]', '$_POST[salesman_name]', '$_POST[delar_email]', '$_POST[delar_address]', '$_POST[delar_mobile]', '$_POST[delar_land]','$_POST[delar_district]', '$_POST[num_of_tickets]')";
 
 if ($conn->query($sql) === TRUE) 
 {
-	$last_id = $conn->insert_id;
+	//$last_id = $conn->insert_id;
+        $last_id = $reg_delar_id;
+        //echo $last_id; 
 	//echo "<script type='text/javascript'>";
 	//echo "alert('New record created successfully. Last inserted ID is: $last_id');";
 	//echo "</script>";
@@ -58,7 +62,7 @@ if ($conn->query($sql) === TRUE)
                         echo "</script>";
                         echo "<button onclick='myFunction()'>Print</button>";
                         echo "<button type='submit' onclick=''>Email</button>";
-                   	echo "<button type='submit'>Done!</button>";
+                   	echo "<button type='submit'>Done</button>";
 			echo "</form>";
 			echo "</html>";
 		}	
