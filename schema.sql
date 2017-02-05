@@ -1,7 +1,7 @@
 
 # Register
 CREATE TABLE `Register` (
-  `delar_id` int(11) NOT NULL AUTO_INCREMENT,
+  `delar_id` varchar(20) NOT NULL,
   `delar_name` varchar(20) NOT NULL,
   `contact_name` varchar(20),
   `salesman_name` varchar(20),  	 
@@ -22,7 +22,7 @@ CREATE TABLE `CheckIn` (
   `checkin_date` date,
   `checkin_time` time,
   `checkin_tkt` int(4),
-  `delar_id` int(11) NOT NULL,
+  `delar_id` varchar(20) NOT NULL,
   KEY `fk_delar_id` (`delar_id`),
   CONSTRAINT `fk_delar_id` FOREIGN KEY (`delar_id`) REFERENCES `Register` (`delar_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
