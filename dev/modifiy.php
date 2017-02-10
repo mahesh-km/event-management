@@ -16,6 +16,7 @@ if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
 }
 
+
 function issue_tkt() {
 	header("location:issue_tickets.php");
 }
@@ -40,10 +41,19 @@ $result = mysqli_query($conn, $query_select);
                 echo "<html>";
                 echo "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
                 echo "<link rel='stylesheet' type='text/css' href='CSS/style_table_issuetkt.css'>";
+                echo "<link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css'>";
+                echo "<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>";
+                echo "<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>";
+		echo "<script>
+		      $(document).ready(function() {
+		      $('#datepicker').datepicker();
+		       }); 
+                      </script>";
+
                 echo "<ul class='topnav'>";
                 echo "<li><a class='active' href='option_page.html'>Home</a></li>";
                 echo "<li><a href='registration.html'>Delar Registration</a></li>";
-                echo " <li><a href='issue_ticket.html'>Issue ticket</a></li>";
+                echo "<li><a href='issue_ticket.html'>Issue ticket</a></li>";
                 echo "<li><a href='user_search.html'>Search</a></li>";
                 echo "<li><a href='check-in.html'>Check-in</a></li>";
                 echo" <li><a href='report.php'>Report</a></li>";
@@ -51,6 +61,13 @@ $result = mysqli_query($conn, $query_select);
                 echo"</ul>";
 
                 echo "<form action='update_register.php' method='POST'>";
+                echo "<div style='padding-top:1px; color: #5a5756; font: 1em sans-serif;'>
+                        <h1>Issue Ticket</h1>
+                     </div>
+		     <div style='color: #5a5756; font: 1em sans-serif;'>
+		        <h3>Please modify the Delar information, If required</h3>
+		     </div>";
+
 		echo "<table id='box-table-a' >";
                         echo "<thead>";
 		        	echo "<tr>";
@@ -83,13 +100,13 @@ $result = mysqli_query($conn, $query_select);
                         echo "<tbody>";
                                echo "<tr>
             			         <td>{$id}</td>
-            		         	 <td><input type='text' name='col1' value='{$col1}' style='width:150'/></td>
+            		         	 <td><input type='text' name='col1' value='{$col1}' style='width:150' required/></td>
 				         <td><input type='text' name='col2' value='{$col2}' style='width:150'/></td>
 			             	 <td><input type='text' name='col3' value='{$col3}' style='width:150'/></td>
-                                         <td><input type='text' name='col4' value='{$col4}' /></td>
-                                         <td><input type='text' name='col5' value='{$col5}' /></td>
-                                         <td><input type='text' name='col6' value='{$col6}' style='width:100px'></td>
-                                         <td><input type='text' name='col7' value='{$col7}' style='width:100px'></td>
+                                         <td><input type='email' name='col4' value='{$col4}' required/></td>
+                                         <td><input type='text' name='col5' value='{$col5}' required></td>
+                                         <td><input type='text' name='col6' value='{$col6}' style='width:100px' required pattern='^[0-9\-\+\s\(\)]*$'></td>
+                                         <td><input type='text' name='col7' value='{$col7}' style='width:100px' pattern='^[0-9\-\+\s\(\)]*$'></td>
                                          <td><select type='text' id='col8' name='col8' style='width:150'>
              			                <option>{$col8}</option>
 				                <option value='Alappuzha'>Alappuzha</option>
@@ -115,26 +132,23 @@ $result = mysqli_query($conn, $query_select);
                 }
                 echo "</table>";
                 echo "</form>";
-                echo "</html>";
-
-                echo "<html>";
-		echo "<link rel='stylesheet' type='text/css' href='CSS/style_merge.css'>";
 		echo "<form method='post' action='issue_tickets.php'>
- 			   <div style='padding-top:1px; color: #5a5756; font: 1em sans-serif;'>
-		           	   <h1>Issue Ticket</h1>
-			   </div>
-    			   <div>
-		        	   <h3>please enter number of pass required</h3>
- 		           </div>
-			   <div>
-			       <label for='pass_rq'>No. of pass </label>
-		               <input type='number' id='pass_rq' name='pass_rq' style='height:30px;'/>
-			    </div>
-			    <div class='button'>
-		    	        <input id='button' type='submit' name='submit' value='Submit'>
+                          <div style='color: #5a5756; font: 1em sans-serif;'>
+                                 <h3>Issue new ticket for next event</h3>
+                          </div>
+                          <div>  
+				 <label for='pass_rq'>Select an event date</label>
+                                 <input style='width: 200px;' type='date' id='datepicker' name='event_date' required/>
+			  </div>
+			  <div>
+			         <label for='pass_rq'>Enter No.of pass required</label>
+		                 <input type='number' id='pass_rq' name='pass_rq' style='height:30px;' required'/>
+			  </div>
+			  <div class='button'>
+		    	         <input id='button' type='submit' name='submit_2' value='Submit'/> 
+                                 <input type='hidden' name='id' value='{$id}'/>
 			    </div>
 			</form>";
-
                 echo "</html>";
  
 	}else {

@@ -1,15 +1,38 @@
 <html>
+<title>mascotautomobiles.com</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="CSS/style_merge.css">
+<link rel='stylesheet' href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css'>
+<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>
+<script>
+   $(document).ready(function() {
+   $('#datepicker').datepicker(); }); 
+</script>
 
 <ul class="topnav">
   <li><a class="active" href="option_page.html">Home</a></li>
-  <li><a href="registration.html">Issue ticket</a></li>
+  <li><a href="registration.html">Delar Registration</a></li>
+  <li><a href="issue_ticket.html">Issue ticket</a></li>
   <li><a href="user_search.html">Search</a></li>
   <li><a href="check-in.html">Check-in</a></li>
-  <li><a href="reg_modify.html">Edit</a></li>
+  <li><a href="report.html">Report</a></li>
   <li class="right"><a href="index.html">Logout</a></li>
 </ul>
 
-<h1>report</h1>
-</html>
+<form method="post" action="report.php">
+    <div style="padding-top:1px; color: #5a5756; font: 1em sans-serif;">
+        <h1>View Report</h1>
+    </div>
+    <div>
+        <h3>please select a report date</h3>
+    </div>
+    <div>
+        <label for='select_date'>Select a date</label>
+        <input style='width: 200px;' type='date' id='datepicker' name='event_date' required/>
+    </div>
+    <div class="button">
+        <input id="button" type="submit" name="submit" value="Check-In">
+    </div>
+</form>
+

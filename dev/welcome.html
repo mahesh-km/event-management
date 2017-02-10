@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<script type="text/javascript" src="j_query.js"></script>
+<script type="text/javascript">
+setInterval( myfun, 500);
+
+   function myfun() {
+
+   txtname = document.getElementById("d_name");  
+
+   $.get("XML/check-in.xml", {}, function (xml) {
+        $('page', xml).each(function (i) {
+         if ($(this).find("d_name").length > 0) {
+             
+             txtname.innerHTML = $(this).find("d_name").text();}
+
+            });
+
+        });
+
+    }
+
+</script>
+<title>mascoatautomobiles</title>
+<link rel="stylesheet" type="text/css" href="CSS/style_welcome.css">
+</head>
+
+	<body>
+		<div style="text-align:center; font-size:40px; padding-top:300px; color: #5a5756; font: 10em sans-serif;">
+                    <h1>Welcome...</h1>
+                    <h1 id="d_name"></h1>
+                </div>
+
+	</body>
+</html>
