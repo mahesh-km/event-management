@@ -5,22 +5,21 @@ CREATE TABLE `Register` (
   `delar_name` varchar(80) NOT NULL,
   `contact_name` varchar(20) DEFAULT NULL,
   `salesman_name` varchar(20) DEFAULT NULL,
-  `email` varchar(80) NOT NULL,
+  `email` varchar(80) DEFAULT NULL,
   `address` varchar(100) NOT NULL,
   `phone_mob` bigint(10) NOT NULL,
-  `land_phone` bigint(12) DEFAULT NULL,
+  `land_phone` varchar(12) NOT NULL,
   `delar_dist` char(50) NOT NULL,
   `tin_no` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`delar_id`),
-  UNIQUE KEY `email` (`email`)
+  PRIMARY KEY (`delar_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1
 
 # Ticket_info
 CREATE TABLE `Ticket_info` (
   `ticket_id` varchar(50) NOT NULL,
-  `pass_no` int(4) NOT NULL,
   `ticket_date` date DEFAULT NULL,
   `event_date` date NOT NULL,
+  `guest_name` varchar(80) NOT NULL,
   `delar_id` int(11) NOT NULL,
   PRIMARY KEY (`ticket_id`),
   KEY `fk_delar_id` (`delar_id`),
@@ -32,7 +31,6 @@ CREATE TABLE `CheckIn` (
   `checkin_id` int(11) NOT NULL AUTO_INCREMENT,
   `checkin_date` date DEFAULT NULL,
   `checkin_time` time DEFAULT NULL,
-  `checkin_tkt` int(4) DEFAULT NULL,
   `ticket_id` varchar(50) NOT NULL,
   `delar_id` int(11) NOT NULL,
   PRIMARY KEY (`checkin_id`),
