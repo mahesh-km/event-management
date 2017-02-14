@@ -1,0 +1,117 @@
+form {
+    margin: 20 auto;
+    width: 500px;
+    padding: 1em;
+    border: 3px solid #CCC;
+    border-radius: 1em;
+    text-align: center;
+}
+
+p {
+  margin: 0 auto;
+  font: sans-serif;
+}
+
+h1 {
+    margin: 0 auto;
+    font: 1em sans-serif;
+    font-weight: bold;
+    display: block;
+    font-size: 30px;
+}
+
+h3 {
+    margin: 0 auto;
+    font: 1em sans-serif;
+    display: block;
+    font-size: 18px;
+}
+
+h4 {
+    margin: 0 auto;
+    font: 1em sans-serif;
+    display: block;
+    font-size: 14px;
+}
+
+form div + div {
+    margin-top: 2em;
+    
+}
+
+label {
+    font: 1em sans-serif;
+    display: inline-block;
+    width: 130px;
+    text-align: center;
+}
+
+input, textarea {
+    font: 1em sans-serif;
+    width: 300px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    border: 1px solid #999;
+}
+
+input:focus, textarea:focus {
+    border-color: #000;
+}
+
+textarea {
+    vertical-align: top;
+    height: 5em;
+    resize: vertical;
+}
+#button {
+    font: 1em sans-serif;
+    border-radius:10px;
+    width:135px;
+    height:40px;
+    background:#e9e9e5;
+    font-size:20px;
+    margin-left:180px;
+}
+button {
+    margin-left: .5em;
+}
+select {
+    font: 1em sans-serif;
+    width: 300px;
+}
+body {
+margin: 0;
+}
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #4CAF50;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
+
+table, th, td {
+     border: 1px solid black;
+}

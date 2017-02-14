@@ -1,0 +1,35 @@
+<html>
+<title>mascotautomobiles.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="CSS/style_merge.css">
+
+<ul class="topnav">
+  <li><a class="active" href="option_page.html">Home</a></li>
+  <li><a href="registration.html">Dealer Registration</a></li>
+  <li><a href="modify.html">Edit</a></li>
+  <li><a href="issue_ticket.html">Issue Ticket</a></li>
+  <li><a href="user_search.html">Search</a></li>
+  <li><a href="check-in.html">Check-in</a></li>
+  <li><a href="report.html">Report</a></li>
+  <li class="right"><a href="index.html">Logout</a></li>
+</ul>
+
+<form method="post" action="modify.php">
+    <div style="padding-top:1px; color: #5a5756; font: 1em sans-serif;">
+        <h1>Search Dealer</h1>
+    </div>
+    <div>
+        <h3>Please Enter Dealer Name For Search</h3>
+    </div>
+    <div>
+        <label for="delar_name">Dealer Name</label> 
+        <input type="text" id="delar_name" name="delar_name" />
+    </div> 
+   <!-- <div>
+        <label for="delar_email">Email</label>
+        <input type="email" id="delar_email" name="delar_email" />
+    </div>--!>
+    <div class="button">
+        <input id="button" type="submit" name="submit" value="Search">
+    </div>
+</form>

@@ -1,0 +1,77 @@
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<title>mascotautomobiles.com</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="CSS/style_merge.css">
+
+<ul class="topnav">
+  <li><a class="active" href="option_page.html">Home</a></li>
+  <li><a href="registration.html">Dealer Registration</a></li>
+  <li><a href="modify.html">Edit</a></li>
+  <li><a href="issue_ticket.html">Issue Ticket</a></li>
+  <li><a href="user_search.html">Search</a></li>
+  <li><a href="check-in.html">Check-in</a></li>
+  <li><a href="report.html">Report</a></li>
+  <li class="right"><a href="index.html">Logout</a></li>
+</ul>
+
+<form method="post" action="register_user.php">
+    <div style="padding-top:1px; color: #5a5756; font: 1em sans-serif;">
+        <h1>Register New Dealer</h1>
+    </div>
+    <div>
+        <label for="name">Dealer Name</label>
+        <input type="text" id="name" name="delar_name" required/>
+    </div>
+    <div>
+        <label for="name">Contact Name</label>
+        <input type="text" id="name" name="contact_name" required/>
+    </div>
+    <div>
+        <label for="name">Sales Man</label>
+        <input type="text" id="name" name="salesman_name" required/>
+    </div>
+    <div>
+        <label for="Email">E-mail</label>
+        <input type="email" id="mail" name="delar_email"/>
+    </div>
+    <div>
+        <label for="address">Address</label>
+        <textarea id="address" name="delar_address" required></textarea>
+    </div>
+    <div>
+        <label for="phone_mob">Mobile</label>
+        <input type="tel" id="phone_mob" name="delar_mobile" required pattern="^[0-9\-\+\s\(\)]*$">
+    </div>
+    <div>
+        <label for="phone_land">Phone Office</label>
+        <input type="tel" id="phone_land" name="delar_land" required pattern="^[0-9\-\+\s\(\)]*$">
+    </div>
+    <div>
+        <label for="district">District</label>
+        <select type="text" id="district" name="delar_district" required>
+  		<option>Select a district...</option>
+	 	<option value="Alappuzha">Alappuzha</option>
+  		<option value="Ernakulam">Ernakulam</option>
+  		<option value="Idukki">Idukki</option>
+  		<option value="Kannur">Kannur</option>
+  		<option value="Kasaragod">Kasaragod</option>
+	  	<option value="Kollam">Kollam</option>
+  		<option value="Kottayam">Kottayam</option>
+  		<option value="Kozhikode">Kozhikode</option>
+  		<option value="Malappuram">Malappuram</option>
+  		<option value="Palakkad">Palakkad</option>
+  		<option value="Pathanamthitta">Pathanamthitta</option>
+  		<option value="Thiruvananthapuram">Thiruvananthapuram</option>
+  		<option value="Thrissur">Thrissur</option>
+  		<option value="Wayanad">Wayanad</option>
+	</select>
+    </div>
+    <div>
+        <label for="tin_no">Tin No.</label>
+        <input type="text" id="tin_no" name="tin_no" style="height:30px"/>
+    </div>
+    <div class="button">
+        <input id="button" type="submit" name="submit" value="Register">
+    </div>
+</form>
+</html>
