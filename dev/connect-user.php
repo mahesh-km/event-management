@@ -1,5 +1,5 @@
 <?php
-$con = mysqli_connect("localhost","root","root","mascotautomobiles");
+$con = mysqli_connect("localhost","root","root","mascotautomobiles2");
 if (!$con) {
 die("Failed to connect to MySQL: " . mysqli_error());
 }

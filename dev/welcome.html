@@ -8,15 +8,14 @@ setInterval( myfun, 500);
    function myfun() {
 
    txtname = document.getElementById("d_name");  
+   txtname2 = document.getElementById("g_name");
 
    $.get("XML/check-in.xml", {}, function (xml) {
         $('page', xml).each(function (i) {
-         if ($(this).find("d_name").length > 0) {
-             
-             txtname.innerHTML = $(this).find("d_name").text();}
-
-            });
-
+         if ($(this).find("d_name").length > 0 || $(this).find("guest_n").length > 0) {  
+	     txtname.innerHTML = $(this).find("d_name").text();}
+             txtname2.innerHTML = $(this).find("guest_n").text();
+         });
         });
 
     }
@@ -33,6 +32,7 @@ function AutoRefresh( t ) {
 	<body onload="JavaScript:AutoRefresh(5000);">
 		<div style="text-align:center; font-size:40px; padding-top:300px; color: #5a5756; font: 10em sans-serif;">
                     <h1>Welcome...</h1>
+                    <h1 id="g_name"><h1>
                     <h1 id="d_name"></h1>
                 </div>
 

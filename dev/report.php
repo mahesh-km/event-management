@@ -4,10 +4,10 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "mascotautomobiles";
+$dbname = "mascotautomobiles2";
 
-$delarname = $_POST['delar_name'];
-$delaremail = $_POST['delar_email'];
+// $delarname = $_POST['delar_name'];
+// $delaremail = $_POST['delar_email'];
 
 $select_date = $_POST['event_date'];
 $date = new DateTime($select_date);
@@ -24,7 +24,7 @@ if ($conn->connect_error) {
 
 if ($select_date <= $date_now) 
  {
-  $query_select = "SELECT `Register`.`delar_id`, `Register`.`delar_name`, `Register`.`contact_name`, `Register`.`phone_mob`, `Register`.`email`, `Register`.`delar_dist`, `CheckIn`.`checkin_date`, `CheckIn`.`checkin_time`, `Ticket_info`.`ticket_id`, `Ticket_info`.`pass_no`, `Ticket_info`.`ticket_date`, `Ticket_info`.`event_date`, `CheckIn`.`checkin_tkt` from `Register` INNER JOIN `Ticket_info` ON `Register`.`delar_id` = `Ticket_info`.`delar_id` INNER JOIN `CheckIn` ON `Ticket_info`.`delar_id` = `CheckIn`.`delar_id` WHERE `Ticket_info`.`event_date` = '$select_date' ORDER BY `CheckIn`.`checkin_time`";
+  $query_select = "SELECT `Register`.`delar_id`, `Register`.`delar_name`, `Register`.`contact_name`, `CheckIn`.`checkin_date`, `CheckIn`.`checkin_time`, `Ticket_info`.`ticket_id`, `Ticket_info`.`guest_name`, `Ticket_info`.`guest_gender`, `Ticket_info`.`ticket_date`, `Ticket_info`.`event_date` from `Register` INNER JOIN `Ticket_info` ON `Register`.`delar_id` = `Ticket_info`.`delar_id` INNER JOIN `CheckIn` ON `Ticket_info`.`delar_id` = `CheckIn`.`delar_id` WHERE `Ticket_info`.`event_date` = '$select_date' ORDER BY `CheckIn`.`checkin_time`";
 
   $result = mysqli_query($conn, $query_select);
 
@@ -49,36 +49,39 @@ if ($select_date <= $date_now)
                 echo "<table id='box-table-a' >";
                         echo "<thead>";
                                 echo "<tr>";
-                                        echo "<th>Dealer ID</th>";
+                                        echo "<th>Sl.no</th>";
                                         echo "<th>Dealer Name</th>";
                                         echo "<th>Contact Name</th>";
-                                        echo "<th>Phone</th>";
-                                        echo "<th>Email</th>";
-                                        echo "<th>District</th>";
+                                        echo "<th>Guest Name</th>";
+                                        echo "<th>Gender</th>";
+                                        //echo "<th>Phone</th>";
+                                        //echo "<th>Email</th>";
+                                        //echo "<th>District</th>";
 					echo "<th>Ticket No</th>";
 					echo "<th>Ticket Issue Date</th>";
                                         echo "<th>Check In Date</th>";
                                         echo "<th>Check In Time</th>";
-                                        echo "<th>No. Pass Issued</th>";
-                                        echo "<th>No. Pass Check in</th>";
                                 echo "</tr>";
                         echo "</thead>";
+                        $slno = 0;
                         while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                        //while($row = $result->fetch_assoc()) {
                         echo "<tbody>";
                                 echo "<tr>";
-                                        echo "<td>". $row["delar_id"]. "</td>";
+                                        $sl_value = ++$slno;
+                                        echo "<td>$sl_value</td>";
                                         echo "<td>" . $row["delar_name"]. "</td>";
                                         echo "<td>". $row["contact_name"]. "</td>";
-                                        echo "<td>" . $row["phone_mob"]. "</td>";
-                                        echo "<td>" . $row["email"]. "</td>";
-                                        echo "<td>" . $row["delar_dist"]. "</td>";
+					echo "<td>". $row["guest_name"]. "</td>";
+					echo "<td>". $row["guest_gender"]. "</td>";
+                                        //echo "<td>" . $row["phone_mob"]. "</td>";
+                                        //echo "<td>" . $row["email"]. "</td>";
+                                        //echo "<td>" . $row["delar_dist"]. "</td>";
 					echo "<td>" . $row["ticket_id"]. "</td>";
 					echo "<td>" . $row["ticket_date"]. "</td>";
                                         echo "<td>". $row["checkin_date"]. "</td>";
         		                echo "<td>". $row["checkin_time"]. "</td>";
-                                        echo "<td>" . $row["pass_no"]. "</td>";
-                                        echo "<td>". $row["checkin_tkt"]. "</td>";
+                                        //echo "<td>" . $row["pass_no"]. "</td>";
+                                        //echo "<td>". $row["checkin_tkt"]. "</td>";
                                 echo "</tr>";
                         echo "</tbody>";
                 }
@@ -87,6 +90,7 @@ if ($select_date <= $date_now)
                 echo "function myFunction()";
                 echo "{  window.print(); }";
                 echo "</script>";
+		echo "<p>&nbsp;</p>";
                 echo "<button onclick='myFunction()'>Print</button>";
                 echo "<button type='submit'>Done</button>";
                 echo "</form>";

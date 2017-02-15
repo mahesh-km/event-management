@@ -6,14 +6,14 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "mascotautomobiles";
+$dbname = "mascotautomobiles2";
 
 $event_date = $_POST['event_date'];
 $date = new DateTime($event_date);
 $event_date = $date->format('Y-m-d');
 
-
-$pass = $_POST['pass_rq'];
+$gender = $_POST['gender'];
+$guest = $_POST['guest_name'];
 $delar_id = $_POST['id'];
 
 // Create connection
@@ -34,48 +34,61 @@ function AlertMsg($message) {
 // Gen QR code for ticket number.
 function print_qr ($auto_ticket_id, $conn)
 {
-	$query_select =  "SELECT `Register`.`delar_name`, `Register`.`contact_name`, `Register`.`phone_mob`,  `Register`.`email`, `Register`.`delar_dist`, `Register`.`address`, `Ticket_info`.`ticket_id`, `Ticket_info`.`ticket_date`, `Ticket_info`.`event_date`, `Ticket_info`.`pass_no` from `Register` INNER JOIN `Ticket_info` ON `Register`.`delar_id` = `Ticket_info`.`delar_id` and `Ticket_info`.`ticket_id` = '$auto_ticket_id'";
+	$query_select =  "SELECT `Register`.`delar_name`, `Register`.`contact_name`, `Register`.`phone_mob`, `Register`.`address`, `Ticket_info`.`ticket_id`, `Ticket_info`.`guest_name`, `Ticket_info`.`guest_gender`, `Ticket_info`.`ticket_date`, `Ticket_info`.`event_date` from `Register` INNER JOIN `Ticket_info` ON `Register`.`delar_id` = `Ticket_info`.`delar_id` and `Ticket_info`.`ticket_id` = '$auto_ticket_id'";
  
         $result = mysqli_query($conn, $query_select);
 
         if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                        $last_id = $row['ticket_id'];
-                        echo "<html>";
-                        echo "<link rel='stylesheet' type='text/css' href='CSS/style_ticket.css'>";
-                        echo "<form action='http://mascotautomobiles.com/dev/option_page.html' >";
-                        echo "<div style='padding-right:10px; color: #5a5756; font: 1em sans-serif;'>";
-                        echo "<img src='image/veedol-logo.png' alt='veedol-logo' align='middle' style='width:260px;height:75px;'>";
-                        echo "<p>&nbsp;</p>";
-                        echo "<h1 style='color: #5a5756; font:2em sans-serif;'>DEALERS MEET</h1>";
-                        echo "<p>&nbsp;</p>";
-                        echo "<p>{$row['contact_name']} </p>";
-                        echo "<p>{$row['delar_name']} </p>";
-                        echo "<p>{$row['address']} </p>";
-                        echo "<p>{$row['delar_dist']}</p>";
-                        echo "<p>&nbsp;</p>"; 
-                        echo "<h3 style='color: #5a5756; font:sans-serif;'>Admit {$row['pass_no']}</h3>";
-                        echo "<h4 style='color: #5a5756; font:sans-serif;'>(Not Transferable)</h4>";
-                        echo "<p>&nbsp;</p>";
-			echo "<p>EVENT DATE : {$row['event_date']}</p>";
-                        echo "<a href='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=$last_id' download='QR.png'>";
-                        echo "<p><img src='http://chart.apis.google.com/chart?cht=qr&chs=300x300&chl=$last_id' alt='QR code' border='0'/></p></a>";
-                        echo "<p>Ticket No : {$row['ticket_id']} </p>";
-                        echo "<p>&nbsp;</p>";
-                        echo "<p>(Please Register before 11:30AM.</p>";
-                        echo "<p>Show This Card At The Time Of Registration)</p>";
-                        echo "<p>&nbsp;</p>";       
-			echo "</div>";
-                        echo "<script type='text/javascript'>";
-                        echo "function myFunction()";
-                        echo "{  window.print(); }";
-                        echo "</script>";
-                        echo "<button onclick='myFunction()'>Print</button>";
-                        echo "<button type='submit' onclick=''>Email</button>";
-                        echo "<button type='submit'>Done</button>";
-                        echo "</form>";
-                        echo "</html>";
+                       $last_id = $row['ticket_id'];
+                       echo "<html>
+			     <head>
+			       <script type='text/javascript'>
+                                 function myFunction()
+                                 {  window.print(); }
+                               </script>
+			     </head>
+                             <link rel='stylesheet' type='text/css' href='CSS/style_ticket.css'>
+                             <form action='http://mascotautomobiles.com/dev/option_page.html' >
+
+                                 <div style='padding-right:10px; text-align: center; width:600px;height:90px;color:#5a5756;font:1em sans-serif;'>
+                                   <img src='image/veedol-logo.png' alt='veedol-logo' align='middle' style='width:200px;height:55px;'>
+                                   <h1 style='color: #5a5756; font:sans-serif;'>DEALERS PASS</h1>
+                                   <h3 style='color: #5a5756; font:sans-serif;'>Admit One</h3>
+                                   <h4 style='color: #5a5756; font:sans-serif;'>(Not Transferable)</h4>
+                                 </div>
+ 
+                                 <div id='container' style='text-align: center;color: #5a5756; font: 1em sans-serif;'>
+                                 <table>
+                                    <tr>
+                                       <td>
+                                          <div style='text-align: left; width:300px; height:170px;color: #5a5756; font: 1em sans-serif;'>
+                                              <p>Name&nbsp;&nbsp;&nbsp;&nbsp;: {$row['guest_name']} </p>
+                                       	      <p>Address : {$row['delar_name']} </p>
+                                              <p>{$row['address']} </p>
+                                              <p>{$row['delar_dist']}</p>
+                                          </div>
+                                       </td>
+                                       <td>
+                                          <div style='text-align:center; width:300px; height:170px;'>
+                                             <img src='http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=$last_id' alt='QR code' border='0'/>
+                                             <p style='font-size: 12px;'>{$row['ticket_id']} </p>
+                                          </div>
+				       </td>
+				   </tr>
+                                   </table>                                  
+                                   <div style='text-align:center; width:600px; height:20px;'>
+                                       <p>Please bring this card for registration and Lucky drow</p>
+                                   </div>
+                                   </form>
+				   <div class='w-screen'>
+                                   <button onclick='myFunction()'>Print</button>
+                                   <button type='submit' onclick=''>Email</button>
+                                   <button type='submit'>Done</button> 
+			           </div>
+                            </html>";
                 }
+        unset($_POST);
         }
         else
         {
@@ -84,9 +97,9 @@ function print_qr ($auto_ticket_id, $conn)
 }
 
 // create ticket
-if(!isset($pass) || trim($pass) == '')
+if(!isset($guest) || trim($guest) == '')
  {
-  AlertMsg('Please Input Number Of Pass Required');
+  AlertMsg('Please Enter The Guest Name');
  }
  elseif(!isset($event_date) || trim($event_date) == '')
       {
@@ -101,47 +114,23 @@ if(!isset($pass) || trim($pass) == '')
            }
            else
               {
-	       $query_select = "SELECT * FROM `Ticket_info` WHERE `delar_id` = '$delar_id'";
-               $result = mysqli_query($conn, $query_select);
-	       if (mysqli_num_rows($result) > 0) 
-	        {
-	        $auto_ticket_id = uniqid();	
-       		$ticket_date = date("Y-m-d");
-                $query_update = "UPDATE Ticket_info
-    	   	 	SET ticket_id = '$auto_ticket_id', 
-		            pass_no = '$_POST[pass_rq]', 
-	        	    ticket_date = '$ticket_date',
-        	            event_date = '$event_date'
-		       WHERE `delar_id` = '$delar_id'";
-	        $result = mysqli_query($conn, $query_update);
-                if ($conn->query($query_update) === TRUE)
-		 { 
-                  print_qr($auto_ticket_id, $conn);
-                 } 
-	         else
-                    {	
-                     echo "Error: " . $sql . "<br>" . $conn->error;
-                    }
-                }
-                else 
-                   {
-                    $auto_ticket_id = uniqid();
-                    $ticket_date = date("Y-m-d");
+               $auto_ticket_id = uniqid();
+               $ticket_date = date("Y-m-d");
 
-                    $sql = "INSERT INTO Ticket_info (ticket_id, pass_no, ticket_date, event_date, delar_id) VALUES ('$auto_ticket_id', '$_POST[pass_rq]', '$ticket_date', '$event_date', '$delar_id')";
+               $sql = "INSERT INTO Ticket_info (ticket_id, guest_name, guest_gender, ticket_date, event_date, delar_id) VALUES ('$auto_ticket_id', '$guest', '$gender', '$ticket_date', '$event_date', '$delar_id')";
    
-                    if ($conn->query($sql) === TRUE) 
-                    {
+               if ($conn->query($sql) === TRUE) 
+                  {
                      print_qr($auto_ticket_id, $conn);
-                    } 
-                    else 
-                       {
-               	        echo "Error: " . $sql . "<br>" . $conn->error;
-                       } 
-                   }
-             }
-          }
+                  } 
+                  else 
+                     {
+               	       echo "Error: " . $sql . "<br>" . $conn->error;
+                     } 
+               }
+         }
 
 $conn->close();
+
 ?> 
 

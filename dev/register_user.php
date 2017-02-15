@@ -2,9 +2,9 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "mascotautomobiles";
+$dbname = "mascotautomobiles2";
 
-$delar_email = $_POST['delar_email'];
+//$delar_email = $_POST['delar_email'];
 
 
 // Create connection
@@ -14,12 +14,12 @@ if ($conn->connect_error) {
 	die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "INSERT INTO Register (delar_name, contact_name, salesman_name, email, address, phone_mob, land_phone, delar_dist, tin_no) VALUES ('$_POST[delar_name]', '$_POST[contact_name]', '$_POST[salesman_name]', '$_POST[delar_email]', '$_POST[delar_address]', '$_POST[delar_mobile]', '$_POST[delar_land]','$_POST[delar_district]', '$_POST[tin_no]')";
+$sql = "INSERT INTO Register (delar_name, contact_name, address) VALUES ('$_POST[delar_name]', '$_POST[contact_name]', '$_POST[delar_address]')";
 
 if ($conn->query($sql) === TRUE) 
 	{
 	$last_id = $conn->insert_id;
-        $query_select = "SELECT `delar_id`, `delar_name`, `contact_name`, `salesman_name`, `address`, `email`, `phone_mob`, `land_phone`, `delar_dist`, `tin_no` FROM `Register` WHERE `delar_id` = '$last_id'";
+        $query_select = "SELECT `delar_id`, `delar_name`, `contact_name`, `address`  FROM `Register` WHERE `delar_id` = '$last_id'";
 
         $result = mysqli_query($conn, $query_select);
 
@@ -35,13 +35,9 @@ if ($conn->query($sql) === TRUE)
                         echo "<li>Delar ID  : $last_id </li>";
                         echo "<li>Delar Name: {$row['delar_name']} </li>";
                         echo "<li>Contact Name: {$row['contact_name']} </li>";
-                        echo "<li>Sales Man: {$row['salesman_name']} </li>";
                         echo "<li>Address     : {$row['address']}</li>";
-                        echo "<li>Email     : {$row['email']}</li>";
-                        echo "<li>Mobile    : {$row['phone_mob']}</li>";
-                        echo "<li>Phone Off.   : {$row['land_phone']}</li>";
-                        echo "<li>District  : {$row['delar_dist']}</li>";
-                        echo "<li>Tin No.: {$row['tin_no']}</li>";
+                        //echo "<li>Mobile    : {$row['phone_mob']}</li>";
+                        //echo "<li>Phone Off.   : {$row['land_phone']}</li>";
                         echo "<button type='submit'>Done</button>";
                         echo "</form>";
                         echo "</html>";

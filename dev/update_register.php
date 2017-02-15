@@ -5,7 +5,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "mascotautomobiles";
+$dbname = "mascotautomobiles2";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -14,20 +14,14 @@ if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
 }
 
-$delar_id = $_POST['id'];
+// $delar_id = $_POST['id'];
 
 if(isset($_POST['submit_m'])) {
     $delar_id = $_POST['id'];
     $query_update = "UPDATE Register
                SET delar_name = '$_POST[delar_name]', 
                   contact_name = '$_POST[contact_name]', 
-                  salesman_name = '$_POST[salesman_name]',
-                  email = '$_POST[delar_email]',
-                  address = '$_POST[delar_address]',
-                  phone_mob = '$_POST[delar_mobile]',
-                  land_phone = '$_POST[delar_land]',
-                  delar_dist = '$_POST[delar_district]',
-                  tin_no = '$_POST[tin_no]'
+                  address = '$_POST[delar_address]'
              WHERE delar_id = '$delar_id'";
     $result = mysqli_query($conn, $query_update);
     if(! $result )

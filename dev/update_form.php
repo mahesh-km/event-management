@@ -5,7 +5,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "root";
-$dbname = "mascotautomobiles";
+$dbname = "mascotautomobiles2";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -16,8 +16,8 @@ if ($conn->connect_error) {
 
 $delar_id = $_POST['id'];
 
-$query_select = "SELECT `delar_id`, `delar_name`, `contact_name`, `salesman_name`, `address`, `email`, `phone_mob`, `land_phone`, `delar_dist`, `tin_no` FROM `Register` WHERE `delar_id`= '$delar_id'";
-
+$query_select = "SELECT `delar_id`, `delar_name`, `contact_name`, `address`, `phone_mob`, `land_phone` FROM `Register` WHERE `delar_id`= '$delar_id'";
+ 
 	$result = mysqli_query($conn, $query_select);
    	if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
@@ -49,19 +49,19 @@ $query_select = "SELECT `delar_id`, `delar_name`, `contact_name`, `salesman_name
 			        <label for='name'>Contact Name</label>
 			        <input type='text' id='name' name='contact_name' value='$row[contact_name]' required/>
 			</div>
-		        <div>
+ 		        <!-- <div>
 			        <label for='name'>Salesman</label>
 			        <input type='text' id='name' name='salesman_name' value='$row[salesman_name]' required/>
 		        </div>
 		        <div>
 			        <label for='Email'>E-mail</label>
 			        <input type='email' id='mail' name='delar_email' value='$row[email]' />
-	                </div>
+	                </div> --!>
 			<div>
 			        <label for='address'>Address</label>
 			        <textarea id='address' name='delar_address' required>$row[address]</textarea>
 		        </div>
-		        <div>
+		        <!-- <div>
 			        <label for='phone_mob'>Mobile</label>
 			        <input type='tel' id='phone_mob' name='delar_mobile' value='$row[phone_mob]' required pattern='^[0-9\-\+\s\(\)]*$'>
 		        </div>
@@ -92,7 +92,7 @@ $query_select = "SELECT `delar_id`, `delar_name`, `contact_name`, `salesman_name
 		        <div>
 			        <label for='tin_no'>Tin No.</label>
 			        <input type='text' id='tin_no' name='tin_no' value='$row[tin_no]' style='height:30px'/>
-		        </div>
+		        </div> --!>
 		        <div class='button'>
 			        <input id='button' type='submit' name='submit_m' value='Save'>
 				<input type='hidden' name='id' value='{$delar_id}'/>
