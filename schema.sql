@@ -8,15 +8,15 @@ CREATE TABLE `UserName` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1
 
 # Register
-CREATE TABLE `Register` (
+Register | CREATE TABLE `Register` (
   `delar_id` int(11) NOT NULL AUTO_INCREMENT,
   `delar_name` varchar(80) NOT NULL,
-  `contact_name` varchar(20) DEFAULT NULL,
-  `address` varchar(100) NOT NULL,
-  `phone_mob` bigint(10) NOT NULL,
-  `land_phone` varchar(12) NOT NULL,
+  `contact_name` varchar(80) DEFAULT NULL,
+  `address` varchar(150) NOT NULL,
+  `phone_mob` bigint(10) DEFAULT NULL,
+  `land_phone` varchar(12) DEFAULT NULL,
   PRIMARY KEY (`delar_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1
 
 # Ticket_info
 CREATE TABLE `Ticket_info` (
